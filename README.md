@@ -2,4 +2,4 @@
 
 ## Exercice to learning EJS
 
-During this project, I using Node & EJS template
+During this project, I using **Node** & **EJS template**

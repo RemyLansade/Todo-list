@@ -1,0 +1,26 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "App using EJS templating.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobbystu/Todo-list.git"
+  },
+  "author": "Rémy Lansade",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bobbystu/Todo-list/issues"
+  },
+  "homepage": "https://github.com/bobbystu/Todo-list#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}
