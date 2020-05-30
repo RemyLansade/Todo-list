@@ -7,11 +7,12 @@ const port = 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static('public'));
 
 
 // Roots
 app.get('/', (req, res) => {
-    res.send('Hello world');
+    res.sendFile(__dirname + '/index.html');
 });
 
 
