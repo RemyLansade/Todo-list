@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,17 @@
     <title>Todo List</title>
 </head>
 <body>
-    <div class="center">
-        <% if (currentDay === "Saturday" || currentDay === "Sunday" ) { %>
-            <h1 style="color: purple;">Today, It's <%= currentDay %></h1>
-        <% } else { %>
-            <h1 style="color: blue;">Today, It's <%= currentDay %></h1>         
+    <h1>It's <%= currentDay %>.</h1>
+
+    <ul>
+        <% for (let i = 0; i < items.length; i++ ) { %>
+            <li><%= items[i] %></li>
         <% } %>
-    </div>
+    </ul>
+
+    <form action="/" method="POST">
+        <input type="text" name="newItem" placeholder="Enter your task">
+        <button type="submit">Add</button>
+    </form>
 </body>
 </html>

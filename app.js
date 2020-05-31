@@ -5,10 +5,7 @@ const ejs        = require('ejs');
 const app = express();
 const port = 3000;
 
-
-// Middleware
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static('public'));
+let items = [];
 
 
 // EJS
@@ -16,17 +13,29 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 
 
+// Middleware
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static('public'));
+
+
 // Roots
 app.get('/', (req, res) => {
     
     const todayId  = new Date();
     const options = {
-        weekday : "long",
+        weekday : 'long'
     };
-    
-    const currentDay = todayId.toLocaleDateString("en-US", options);
+    const currentDay = todayId.toLocaleDateString('en-US', options);
 
-    res.render('./pages/index', {currentDay: currentDay});
+    res.render('./pages/index', {currentDay: currentDay, items : items});
+});
+
+app.post('/', (req, res) => {
+    const item = req.body.newItem;
+    items.push(item);
+    console.log(items);
+
+    res.redirect('/');
 });
 
 
