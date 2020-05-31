@@ -8,7 +8,11 @@
 </head>
 <body>
     <div class="center">
-        <h1>Today, It's <%= currentDay %></h1>
+        <% if (currentDay === "saturday" || currentDay === "sunday" ) { %>
+            <h1 style="color: purple;">Today, It's <%= currentDay %></h1>
+        <% } else { %>
+            <h1 style="color: blue;">Today, It's <%= currentDay %></h1>         
+        <% } %>
     </div>
 </body>
 </html>
