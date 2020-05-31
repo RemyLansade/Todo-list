@@ -7,17 +7,26 @@
     <title>Todo List</title>
 </head>
 <body>
-    <h1>It's <%= currentDay %>.</h1>
+    <div class="box" id="heading">
+        <h1>It's <%= currentDay %>.</h1>
+    </div>
 
-    <ul>
+    <div class="box">
         <% for (let i = 0; i < items.length; i++ ) { %>
-            <li><%= items[i] %></li>
+            <div class="item">
+                <input type="checkbox">
+                <p><%= items[i] %></p>
+            </div>
         <% } %>
-    </ul>
 
-    <form action="/" method="POST">
-        <input type="text" name="newItem" placeholder="Enter your task">
-        <button type="submit">Add</button>
-    </form>
+        <div>
+            <form action="/" method="POST">
+                <input type="text" name="newItem" placeholder="Enter your task">
+                <button type="submit">+</button>
+            </form>
+        </div>
+    </div>
+
+    
 </body>
 </html>

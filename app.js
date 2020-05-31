@@ -1,11 +1,10 @@
 const express    = require('express');
 const bodyParser = require('body-parser');
-const ejs        = require('ejs');
 
 const app = express();
 const port = 3000;
 
-let items = [];
+let items = ["Buy food", "Cock food", "Eat food"];
 
 
 // EJS
@@ -33,7 +32,6 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
     const item = req.body.newItem;
     items.push(item);
-    console.log(items);
 
     res.redirect('/');
 });
