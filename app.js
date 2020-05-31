@@ -1,11 +1,12 @@
 const express    = require('express');
 const bodyParser = require('body-parser');
+const date       = require(__dirname +'/date.js');
 
 const app = express();
 const port = 3000;
 
-let items = ["Buy food", "Cock food", "Eat food"];
-let workItems = [];
+const items = ["Buy food", "Cock food", "Eat food"];
+const workItems = [];
 
 
 // EJS
@@ -20,21 +21,13 @@ app.use(express.static('public'));
 
 // Roots
 app.get('/', (req, res) => {
-    
-    const todayId  = new Date();
-    const options = {
-        weekday : 'long',
-        day : 'numeric',
-        month : 'long'
-    };
-    const currentDay = todayId.toLocaleDateString('en-US', options);
+    // const day = date.getDate();
+    const day = date.getDay();
 
-    res.render('./pages/index', {listTitle: currentDay, items : items});
+    res.render('./pages/index', {listTitle: day, items : items});
 });
 
 app.post('/', (req, res) => {
-    console.log(req.body);
-    
     const item = req.body.newItem;
 
     if (req.body.list === 'Work') {
