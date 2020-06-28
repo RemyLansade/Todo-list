@@ -1,11 +1,13 @@
 const express    = require('express');
 const bodyParser = require('body-parser');
+const _          = require('lodash');
+// Import date.js module
 const date       = require(__dirname +'/date.js');
 
 const app = express();
 const port = 3000;
 
-const items = ["Buy food", "Cock food", "Eat food"];
+const items = ["Acheter à manger", "Cuisiner", "Manger"];
 const workItems = [];
 
 
@@ -21,8 +23,8 @@ app.use(express.static('public'));
 
 // Roots
 app.get('/', (req, res) => {
-    // const day = date.getDate();
-    const day = date.getDay();
+    // Utilisation de "Lodash" pour mettre une majuscule au jour
+    const day = _.upperFirst(date.getDay());
 
     res.render('./pages/index', {listTitle: day, items : items});
 });

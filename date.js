@@ -6,7 +6,7 @@ exports.getDate = function () {
         month : 'long'
     };
 
-    return todayId.toLocaleDateString('en-US', options);
+    return todayId.toLocaleDateString('fr-FR', options);
 }
 
 exports.getDay = function () {
@@ -15,5 +15,5 @@ exports.getDay = function () {
         weekday : 'long'
     };
 
-    return todayId.toLocaleDateString('en-US', options);
+    return todayId.toLocaleDateString('fr-FR', options);
 }

@@ -85,7 +85,7 @@ html {
   }
   
   ::placeholder {
-    color: grey;
+    color: rgb(217, 184, 245);
     opacity: 1;
   }
   
