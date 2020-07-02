@@ -30,16 +30,16 @@ const Item     = mongoose.model('Item',     itemSchema);
 const WorkItem = mongoose.model('WorkItem', itemSchema);
 
 const item1 = new Item({
-    name: "Welcome to your todolist!"
+    name: "Bienvenue dans votre Todo-liste !"
 });
 const item2 = new Item({
-    name: "Hit the + button to add a new item"
+    name: "Clique sur le bouton + pour ajouter"
 });
 const item3 = new Item({
-    name: "<-- Hit this to delete an item"
+    name: "<-- Coche pour supprimer"
 });
 const item4 = new Item({
-    name: "It's a work items"
+    name: "C'est une tache de travaille"
 });
 
 // Roots
@@ -107,7 +107,7 @@ app.get('/work', (req,res) => {
             });
             res.redirect('/work');
         } else {
-            res.render('./pages/index', { listTitle : 'Work', items : foundItems});
+            res.render('./pages/index', { listTitle : 'travaux', items : foundItems});
         }
     });
 });
