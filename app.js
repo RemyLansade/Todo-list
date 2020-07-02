@@ -29,35 +29,18 @@ const itemSchema = {
 const Item     = mongoose.model('Item',     itemSchema);
 const WorkItem = mongoose.model('WorkItem', itemSchema);
 
-// const item1 = new Item({
-//     name: "Welcome to your todolist!"
-// });
-// const item2 = new Item({
-//     name: "Hit the + button to add a new item"
-// });
-// const item3 = new Item({
-//     name: "<-- Hit this to delete an item"
-// });
-// const item4 = new Item({
-//     name: "It's a work items"
-// });
-
-// Item.insertMany([item1, item2, item3], function (err) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log("Successfully saved default 'item' to DB.");
-//     }
-// });
-
-// WorkItem.create(item4, function (err) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log("Successfully saved defaut 'work item' to DB.");
-//     }
-// });
-
+const item1 = new Item({
+    name: "Welcome to your todolist!"
+});
+const item2 = new Item({
+    name: "Hit the + button to add a new item"
+});
+const item3 = new Item({
+    name: "<-- Hit this to delete an item"
+});
+const item4 = new Item({
+    name: "It's a work items"
+});
 
 // Roots
 app.get('/', (req, res) => {
@@ -65,14 +48,20 @@ app.get('/', (req, res) => {
     const day = _.upperFirst(date.getDay());
 
     Item.find({}, function(err, foundItems){
-        if (err) {
-            console.log(err);
+
+        if (foundItems.length === 0){
+            Item.insertMany([item1, item2, item3], function (err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Successfully saved default 'item' to DB.");
+                }
+            });
+            res.redirect('/');
         } else {
             res.render('./pages/index', {listTitle: day, items : foundItems});
         }
     });
-
-    
 });
 
 app.post('/', (req, res) => {
@@ -107,8 +96,16 @@ app.post('/', (req, res) => {
 app.get('/work', (req,res) => {
 
     WorkItem.find({}, function(err, foundItems){
-        if (err) {
-            console.log(err);
+
+        if (foundItems.length === 0){
+            WorkItem.create(item4, function (err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Successfully saved defaut 'work item' to DB.");
+                }
+            });
+            res.redirect('/work');
         } else {
             res.render('./pages/index', { listTitle : 'Work', items : foundItems});
         }
