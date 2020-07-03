@@ -6,7 +6,6 @@ const _          = require('lodash');
 const date       = require(__dirname +'/date.js');
 
 const app = express();
-const port = 3000;
 
 const day        = _.capitalize(date.getDay());
 
@@ -166,9 +165,13 @@ app.post('/delete', function(req, res) {
     }
 });
 
-//--------------------------------------------------------------//
+//------------------------ Server port -------------------------//
 
-// Server port
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
 app.listen(port, () => {
     console.log(`Server listening on port: ${port}`);
 });
