@@ -22,7 +22,7 @@ app.use(express.static('public'));
 
 
 // Init mongoose
-mongoose.connect('mongodb://localhost:27017/todolistDB', { 
+mongoose.connect('mongodb+srv://admin-remy:admin@cluster0.8w725.mongodb.net/todolistDB', { 
     useFindAndModify: false,
     useNewUrlParser: true, 
     useUnifiedTopology: true 
