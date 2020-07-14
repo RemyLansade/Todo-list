@@ -19,9 +19,9 @@ app.use('/', roots);
 
 
 // Init mongoose
-mongoose.connect(`mongodb+srv://${config.database.name}:${config.database.password}@cluster0.8w725.mongodb.net/${config.database.collection}`, { 
+mongoose.connect(`mongodb+srv://${config.db.user}:${config.db.password}@cluster0.8w725.mongodb.net/${config.db.name}`, { 
     useFindAndModify: false,
-    useNewUrlParser: true, 
+    useNewUrlParser: true,
     useUnifiedTopology: true 
 });
 

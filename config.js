@@ -1,9 +1,9 @@
 require('dotenv').config();
 
-exports.database = {
-    name:       process.env.DB_USER,
-    password:   process.env.DB_PASS,
-    collection: process.env.DB_DATABASE
+exports.db = {
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    name: process.env.DB_NAME
 }
 
 exports.app = {
