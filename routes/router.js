@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const _          = require('lodash');
 
 // Import Models
-const Item = require('../models/Item');
-const List = require('../models/List');
+const Item = require('../database/models/Item');
+const List = require('../database/models/List');
 
 // Import Module
 const defaultItems = require('../module/defautItems');
@@ -14,7 +14,6 @@ const day          = _.capitalize(date.getDay());
 
 
 router.get('/', (req, res) => {
-
     Item.find({}, function(err, foundItems){
         if (!err) {
             if (foundItems.length === 0){
@@ -37,9 +36,7 @@ router.get('/', (req, res) => {
 
 
 router.get('/:customListName', function(req,res) {
-
     const customListName = _.capitalize(req.params.customListName);
-
     List.findOne({name: customListName}, function(err, foundList){
         if(!err){
             if(!foundList){
@@ -60,40 +57,30 @@ router.get('/:customListName', function(req,res) {
 
 
 router.post('/', (req, res) => {
-
     const itemName = req.body.newItem;
     const listName = req.body.list;
-
     const item = new Item({
         name : itemName
     });
-
     if (listName === day) {
-
         item.save();
-    
         console.log(`Successfully saved '${day} item' to DB.`);
         res.redirect('/');
-
     } else {
         List.findOne({name: listName}, function(err, foundList){
             foundList.items.push(item);
             foundList.save();
-
             console.log(`Successfully saved '${listName} item' to DB.`);
             res.redirect(`/${listName}`);
         });
     }
-
 });
 
 
 router.post('/delete', function(req, res) {
     const checkedItemId = req.body.checkbox;
     const listName = req.body.listName;
-
     if(listName === day){
-
         Item.findByIdAndRemove(checkedItemId, function(err){
             if (err){
                 console.log(err);
@@ -102,9 +89,7 @@ router.post('/delete', function(req, res) {
                 res.redirect('/');
             }
         });
-
     } else {
-
         List.findOneAndUpdate(
             {name: listName},
             {$pull: {items : {_id: checkedItemId}}},

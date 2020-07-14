@@ -1,11 +1,9 @@
 const express    = require('express');
+const app        = express();
 const mongoose   = require('mongoose');
 const bodyParser = require('body-parser');
-
-const roots     = require('./routes/router');
-
-const app = express();
-
+const roots      = require('./routes/router');
+const config     = require('./config');
 
 // EJS
 app.set('views', './views');
@@ -21,14 +19,14 @@ app.use('/', roots);
 
 
 // Init mongoose
-mongoose.connect('mongodb+srv://admin-remy:admin@cluster0.8w725.mongodb.net/todolistDB', { 
+mongoose.connect(`mongodb+srv://${config.database.name}:${config.database.password}@cluster0.8w725.mongodb.net/${config.database.collection}`, { 
     useFindAndModify: false,
     useNewUrlParser: true, 
     useUnifiedTopology: true 
 });
 
 
-let port = process.env.PORT;
+let port = config.app.port;
 if (port == null || port == "") {
   port = 3000;
 }
