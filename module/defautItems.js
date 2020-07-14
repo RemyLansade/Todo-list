@@ -1,4 +1,4 @@
-const Item = require('./models/Item');
+const Item = require('../models/Item');
 
 const item1 = new Item({
     name: "Bienvenue dans votre Todo-liste !"

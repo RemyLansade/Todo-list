@@ -3,13 +3,14 @@ const router     = express.Router();
 const bodyParser = require('body-parser');
 const _          = require('lodash');
 
+// Import Models
 const Item = require('../models/Item');
 const List = require('../models/List');
 
-const defaultItems = require('../defautItems');
-
-const date       = require('../date');
-const day        = _.capitalize(date.getDay());
+// Import Module
+const defaultItems = require('../module/defautItems');
+const date         = require('../module/date');
+const day          = _.capitalize(date.getDay());
 
 
 router.get('/', (req, res) => {
